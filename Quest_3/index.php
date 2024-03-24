@@ -69,10 +69,11 @@ if (empty($_POST['langg'])) {
   $sth->execute();
   $langs = $sth->fetchAll();
   foreach ($_POST['langg'] as $lang) {
-    $flag = TRue;
+    $flag = true;
     foreach ($langs as $index)
       if ($index[0] == $lang) {
         $flag = false;
+        print ($index[0].'<br/>'.$lang);
         break;
       }
     if ($flag == true) {
@@ -89,7 +90,7 @@ if (empty ($_POST['biog'])) {
   $errors = TRUE;
 }
 
-if ($_POST['V'] != "on") {
+if (empty ($_POST['V'])) {
   print ('Подвердите согласие.<br/>');
   $errors = TRUE;
 }
