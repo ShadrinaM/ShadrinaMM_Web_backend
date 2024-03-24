@@ -88,7 +88,7 @@
       </strong>
       <div class="language">
         <label>
-          <select name="lang" multiple="multiple">
+          <select name="lang[]" multiple="multiple">
             <option value="1"> Pascal</option>
             <option value="2"> C</option>
             <option value="3"> C++</option>
