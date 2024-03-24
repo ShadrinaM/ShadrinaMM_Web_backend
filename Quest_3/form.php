@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div class="fomaa">
+  <div class="fomaa">
     <form action="index.php" method="POST">
       <h3 id="forma">
         ФОРМА ДЛЯ ПОДПИСКИ НА РАССЫЛКУ С ЦИТАТИМИ ПРЕПОДАВАТЕЛЕЙ ФКТИПМ
@@ -25,7 +25,7 @@
         <strong>
           Номер телефона:
         </strong>
-        <input name="phone" type="tel"/>
+        <input name="phone" type="tel" />
       </label>
       <br>
       <label>
@@ -88,19 +88,18 @@
       </strong>
       <div class="language">
         <label>
-          <select name="lang[]" multiple="multiple">
-            <option value="1"> Pascal</option>
-            <option value="2"> C</option>
-            <option value="3"> C++</option>
-            <option value="4"> JavaScript</option>
-            <option value="5"> PHP</option>
-            <option value="6"> Python</option>
-            <option value="7"> Java</option>
-            <option value="8"> Haskel</option>
-            <option value="9"> Clojure</option>
-            <option value="10"> Prolog</option>
-            <option value="11"> Clojure</option>
-            <option value="12"> Scala</option>
+          <select name="langg" multiple="multiple">
+            <option value="1">С</option>
+            <option value="2">Pascal</option>
+            <option value="3">Scala</option>
+            <option value="4">C++</option>
+            <option value="5">Java</option>
+            <option value="6">Python</option>
+            <option value="7">JavaScript</option>
+            <option value="8">PHP</option>
+            <option value="9">Hascel</option>
+            <option value="10">Clojure</option>
+            <option value="11">Prolog</option>
           </select>
         </label>
       </div>

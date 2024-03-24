@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 $errors = FALSE;
-if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
+if (empty ($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
   print ('Заполните имя.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['phone']) || !preg_match('/^\+[0-9]{11}$/', $_POST['phone'])) {
+if (empty ($_POST['phone']) || !preg_match('/^\+[0-9]{11}$/', $_POST['phone'])) {
   print ('Заполните телефон.<br/>');
   $errors = TRUE;
 }
@@ -37,12 +37,12 @@ if (empty ($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$
   $errors = TRUE;
 }
 
-if (empty ($_POST['month'])|| !is_numeric($_POST['year'])||$_POST['month']<0||$_POST['month']>12) {
+if (empty ($_POST['month']) || !is_numeric($_POST['year']) || $_POST['month'] < 0 || $_POST['month'] > 12) {
   print ('Заполните месяц.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['day'])|| !is_numeric($_POST['year'])||$_POST['day']<0||$_POST['day']>31) {
+if (empty ($_POST['day']) || !is_numeric($_POST['year']) || $_POST['day'] < 0 || $_POST['day'] > 31) {
   print ('Заполните день.<br/>');
   $errors = TRUE;
 }
@@ -61,32 +61,26 @@ $db = new PDO(
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
-if (empty($_POST['lang'])) {
-  print ('Выберите язык програмирования.<br/>');
+if (empty($_POST['langg'])) {
+  print ('Выберите язык программирования.<br/>');
   $errors = TRUE;
 } else {
   $sth = $db->prepare("SELECT id FROM Lang");
   $sth->execute();
   $langs = $sth->fetchAll();
-  if (is_array($_POST['lang'])) {
-    foreach ($_POST['lang'] as $lang) {
-        $flag = true;
-        foreach ($langs as $index) {
-            if ($index[0] == $lang) {
-                $flag = false;
-                break;
-            }
-        }
-        if ($flag == true) {
-            print ('Error: no valid language');
-            $errors = true;
-            break;
-        }
+  foreach ($_POST['langg'] as $lang) {
+    $flag = TRue;
+    foreach ($langs as $index)
+      if ($index[0] == $lang) {
+        $flag = false;
+        break;
+      }
+    if ($flag == true) {
+      print ('Error: no valid language');
+      $errors = true;
+      break;
     }
-} else {
-    print ('Error: language must be an array');
-    $errors = true;
-}
+  }
 }
 
 if (empty ($_POST['biog'])) {
@@ -94,7 +88,7 @@ if (empty ($_POST['biog'])) {
   $errors = TRUE;
 }
 
-if ($_POST['V']!="on") {
+if ($_POST['V'] != "on") {
   print ('Подвердите согласие.<br/>');
   $errors = TRUE;
 }
@@ -121,11 +115,11 @@ $stmt->bindparam(':V', $V);
 $stmt->execute(); //отправка
 $id = $db->lastInsertId();
 
-foreach ($_POST['lang'] as $lang) {
+foreach ($_POST['langg'] as $lang) {
   $stmt = $db->prepare("INSERT INTO person_lang (id_u, id_l) VALUES (:id_u,:id_l)");
   $stmt->bindParam(':id_u', $id_u);
   $stmt->bindParam(':id_l', $lang);
-  $id_u=$id;
+  $id_u = $id;
   $stmt->execute(); //отправка
 }
 
