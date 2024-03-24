@@ -73,11 +73,11 @@ if (empty($_POST['langg'])) {
     foreach ($langs as $index)
       if ($index[0] == $lang) {
         $flag = false;
-        print ($index[0].'<br/>'.$lang);
+        print ($index[0]+'<br/>'+$lang);
         break;
       }
     if ($flag == true) {
-      print ('Error: no valid language');
+      print ('Error: no valid language.<br/>');
       $errors = true;
       break;
     }
