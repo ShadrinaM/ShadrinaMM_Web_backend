@@ -61,24 +61,22 @@ $db = new PDO(
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
-if (empty ($_POST['langg'])) {
-  print ('Выберите язык программирования.<br/>');
+if (empty ($_POST['like-4'])) {
+  print ('Выберите ЯП.<br/>');
   $errors = TRUE;
 } else {
   $sth = $db->prepare("SELECT id FROM Lang");
   $sth->execute();
   $langs = $sth->fetchAll();
-  foreach ($_POST['langg'] as $lang) {
-    $flag = true;
-    foreach ($langs as $index) {
-      print ($index[0] + '<br/>' + $lang);
+  foreach ($_POST['like-4'] as $lang) {
+    $flag = TRue;
+    foreach ($langs as $index)
       if ($index[0] == $lang) {
         $flag = false;
         break;
       }
-    }
     if ($flag == true) {
-      print ('Error: no valid language.<br/>');
+      print ('Error: no valid language');
       $errors = true;
       break;
     }
