@@ -27,8 +27,7 @@
           Номер телефона:
         </strong>
         <br>
-        <input name="phone" type="tel" pattern="\+7\-[0-9]{3}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}"
-          placeholder="+7(___)___-__-__" />
+        <input name="phone" type="tel"/>
       </label>
       <br>
       <label>
@@ -63,6 +62,7 @@
         }
         ?>
       </select>
+      <br>
       <br>
       <strong>
         Пол:
