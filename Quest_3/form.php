@@ -18,7 +18,6 @@
         <strong>
           Фамилия имя отчество:
         </strong>
-        <br>
         <input name="fio" type="text" placeholder="ФИО" />
       </label>
       <br>
@@ -26,7 +25,6 @@
         <strong>
           Номер телефона:
         </strong>
-        <br>
         <input name="phone" type="tel"/>
       </label>
       <br>
@@ -34,11 +32,12 @@
         <strong>
           Введите вашу почту:
         </strong>
-        <br>
         <input name="mail" type="email" placeholder="email" />
       </label>
       <br>
-      Укажите год рождения:<br />
+      <strong>
+        Укажите год рождения:
+      </strong>
       <select name="year">
         <?php
         for ($i = 1922; $i <= 2022; $i++) {
@@ -46,7 +45,9 @@
         }
         ?>
       </select><br />
-      Укажите месяц рождения:<br />
+      <strong>
+        Укажите месяц рождения:
+      </strong>
       <select name="month">
         <?php
         for ($i = 1; $i <= 12; $i++) {
@@ -54,7 +55,9 @@
         }
         ?>
       </select><br />
-      Укажите день рождения:<br />
+      <strong>
+        Укажите день рождения:
+      </strong>
       <select name="day">
         <?php
         for ($i = 1; $i <= 31; $i++) {
@@ -83,7 +86,6 @@
       <strong>
         Любимый язык программирования:
       </strong>
-      <br />
       <div class="language">
         <label>
           <select name="lang" multiple="multiple">
@@ -106,16 +108,13 @@
         <strong>
           Биография:
         </strong>
-        <br>
         <textarea name="biog" placeholder="Я ждал 12 лет в Азкабане..">
               </textarea>
       </label>
-      <br>
       <label>
         <input type="checkbox" name="V" />
         c контрактом ознакомлен(а)
       </label>
-      <br>
       <input type="submit" value="Сохранить" />
     </form>
   </div>
