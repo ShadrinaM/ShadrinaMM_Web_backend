@@ -88,7 +88,7 @@
       </strong>
       <div class="language">
         <label>
-          <select name="like-4[]" multiple="multiple">
+          <select name="langg[]" multiple="multiple">
             <option value="1">С</option>
             <option value="2">Pascal</option>
             <option value="3">Scala</option>
