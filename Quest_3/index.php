@@ -65,23 +65,30 @@ if (empty($_POST['langg'])) {
   print ('Выберите язык программирования.<br/>');
   $errors = TRUE;
 } else {
-  $sth = $db->prepare("SELECT id FROM Lang");
-  $sth->execute();
-  $langs = $sth->fetchAll();
-  foreach ($_POST['langg'] as $lang) {
-    $flag = TRue;
-    foreach ($langs as $index)
-      if ($index[0] == $lang) {
-        $flag = false;
+  if (is_array($_POST['langg'])) {
+    $sth = $db->prepare("SELECT id FROM Lang");
+    $sth->execute();
+    $langs = $sth->fetchAll();
+    foreach ($_POST['langg'] as $lang) {
+      $flag = true;
+      foreach ($langs as $index) {
+        if ($index[0] == $lang) {
+          $flag = false;
+          break;
+        }
+      }
+      if ($flag == true) {
+        print ('Error: no valid language');
+        $errors = true;
         break;
       }
-    if ($flag == true) {
-      print ('Error: no valid language');
-      $errors = true;
-      break;
     }
+  } else {
+    print ('Error: language must be an array');
+    $errors = true;
   }
 }
+
 
 if (empty ($_POST['biog'])) {
   print ('Заполните биографию.<br/>');
