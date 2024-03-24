@@ -3,7 +3,7 @@ CREATE TABLE Person(
   fio varchar(150) NOT NULL DEFAULT '',
   phone varchar(12) NOT NULL DEFAULT '',
   mail varchar(100) NOT NULL DEFAULT '',
-  bornday varchar(8) NOT NUll DEFAULT '',
+  bornday varchar(100) NOT NUll DEFAULT '',
   pol varchar(20) Not NULL DEFAULT '',
   biog varchar(300) NOT NULL DEFAULT '',
   V boolean NOT NULL DEFAULT FALSE,
