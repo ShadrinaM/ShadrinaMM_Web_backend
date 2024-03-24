@@ -61,7 +61,7 @@ $db = new PDO(
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
-if (empty($_POST['langg'])) {
+if (empty ($_POST['langg'])) {
   print ('Выберите язык программирования.<br/>');
   $errors = TRUE;
 } else {
@@ -70,12 +70,13 @@ if (empty($_POST['langg'])) {
   $langs = $sth->fetchAll();
   foreach ($_POST['langg'] as $lang) {
     $flag = true;
-    foreach ($langs as $index)
+    foreach ($langs as $index) {
+      print ($index[0] + '<br/>' + $lang);
       if ($index[0] == $lang) {
         $flag = false;
-        print ($index[0]+'<br/>'+$lang);
         break;
       }
+    }
     if ($flag == true) {
       print ('Error: no valid language.<br/>');
       $errors = true;
