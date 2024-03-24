@@ -9,21 +9,36 @@
 </head>
 
 <body>
-  <form action="index.php" method="POST">
-    <h2 id="section3">Красивая форма</h2>
-    <label>
-      Введите инициалы:<br />
-      <input name="fio" value="ФИО" />
-    </label><br />
-    <label>
-      Введите телефон:<br />
-      <input name="tel" type="tel" placeholder="номер" />
-    </label><br />
-    <label>
-      Введите email:<br />
-      <input name="email" type="email" placeholder="почта" />
-    </label><br />
-    <label>
+<div class="fomaa">
+    <form action="index.php" method="POST">
+      <h3 id="forma">
+        ФОРМА ДЛЯ ПОДПИСКИ НА РАССЫЛКУ С ЦИТАТИМИ ПРЕПОДАВАТЕЛЕЙ ФКТИПМ
+      </h3>
+      <label>
+        <strong>
+          Фамилия имя отчество:
+        </strong>
+        <br>
+        <input name="fio" type="text" placeholder="ФИО" />
+      </label>
+      <br>
+      <label>
+        <strong>
+          Номер телефона:
+        </strong>
+        <br>
+        <input name="phone" type="tel" pattern="\+7\-[0-9]{3}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}"
+          placeholder="+7(___)___-__-__" />
+      </label>
+      <br>
+      <label>
+        <strong>
+          Введите вашу почту:
+        </strong>
+        <br>
+        <input name="mail" type="email" placeholder="email" />
+      </label>
+      <br>
       Укажите год рождения:<br />
       <select name="year">
         <?php
@@ -48,40 +63,62 @@
         }
         ?>
       </select>
-    </label>
-    <br />
-    Укажите пол:<br />
-    <label><input type="radio" name="gender" value="мужской" />
-      мужской</label>
-    <label><input type="radio" name="gender" value="женский" />
-      женский</label><br />
-    <label>
-      Выберите любимый язык:
+      <br>
+      <strong>
+        Пол:
+      </strong>
+      <label>
+        <input type="radio" name="pol" required value="1">
+        Мужской
+      </label>
+      <label>
+        <input type="radio" name="pol" required value="2">
+        Женский
+      </label>
+      <label>
+        <input type="radio" name="pol" required value="3">
+        Ламинат
+      </label>
+      <br>
+      <strong>
+        Любимый язык программирования:
+      </strong>
       <br />
-      <select name="like-4[]" multiple="multiple">
-        <option value="1">С</option>
-        <option value="2">Pascal</option>
-        <option value="3">Scala</option>
-        <option value="4">C++</option>
-        <option value="5">Java</option>
-        <option value="6">Python</option>
-        <option value="7">JavaScript</option>
-        <option value="8">PHP</option>
-        <option value="9">Hascel</option>
-        <option value="10">Clojure</option>
-        <option value="11">Prolog</option>
-      </select>
-    </label><br />
-
-    <label>
-      Краткая биография:<br />
-      <textarea name="bio"></textarea>
-    </label><br />
-    С передачей данных:<br />
-    <label><input type="checkbox" name="check" />
-      Согласен-а</label><br />
-    <input type="submit" value="Сохранить" />
-  </form>
+      <div class="language">
+        <label>
+          <select name="lang" multiple="multiple">
+            <option value="1"> Pascal</option>
+            <option value="2"> C</option>
+            <option value="3"> C++</option>
+            <option value="4"> JavaScript</option>
+            <option value="5"> PHP</option>
+            <option value="6"> Python</option>
+            <option value="7"> Java</option>
+            <option value="8"> Haskel</option>
+            <option value="9"> Clojure</option>
+            <option value="10"> Prolog</option>
+            <option value="11"> Clojure</option>
+            <option value="12"> Scala</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        <strong>
+          Биография:
+        </strong>
+        <br>
+        <textarea name="biog" placeholder="Я ждал 12 лет в Азкабане..">
+              </textarea>
+      </label>
+      <br>
+      <label>
+        <input type="checkbox" name="V" />
+        c контрактом ознакомлен(а)
+      </label>
+      <br>
+      <input type="submit" value="Сохранить" />
+    </form>
+  </div>
 </body>
 
 </html>

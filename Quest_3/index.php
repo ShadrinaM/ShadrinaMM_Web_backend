@@ -16,18 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // Завершаем работу скрипта.
   exit();
 }
+
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 $errors = FALSE;
 if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
   print ('Заполните имя.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['tel']) || !preg_match('/^\+[0-9]{11}$/', $_POST['tel'])) {
+if (empty($_POST['phone']) || !preg_match('/^\+[0-9]{11}$/', $_POST['phone'])) {
   print ('Заполните телефон.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['email']) || !preg_match('/^([a-z0-9_-]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i', $_POST['email'])) {
+if (empty ($_POST['mail']) || !preg_match('/^([a-z0-9_-]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i', $_POST['mail'])) {
   print ('Заполните почту.<br/>');
   $errors = TRUE;
 }
@@ -46,31 +47,32 @@ if (empty ($_POST['day'])|| !is_numeric($_POST['year'])||$_POST['day']<0||$_POST
   $errors = TRUE;
 }
 
-if (empty ($_POST['gender'])) {
+if (empty ($_POST['pol'])) {
   print ('Выберите пол.<br/>');
   $errors = TRUE;
 }
 
-$user = 'u67345';
-$pass = '2030923';
+$user = 'u67304';
+$pass = '4684538';
 $db = new PDO(
-  'mysql:host=localhost;dbname=u67345',
+  'mysql:host=localhost;dbname=u67304',
   $user,
   $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
-if (empty($_POST['like-4'])) {
-  print ('Выберите ЯП.<br/>');
+if (empty($_POST['lang'])) {
+  print ('Выберите язык програмирования.<br/>');
   $errors = TRUE;
 } else {
   $sth = $db->prepare("SELECT id FROM Lang");
   $sth->execute();
   $langs = $sth->fetchAll();
-  foreach ($_POST['like-4'] as $lang) {
+  foreach ($_POST['lang'] as $lang) {
     $flag = TRue;
     foreach ($langs as $index)
-      if ($index[0] == $lang) {
+      if ($index[0] == $lang) //т.к. index есть не то что можно сравнить с $lang
+      {
         $flag = false;
         break;
       }
@@ -82,12 +84,12 @@ if (empty($_POST['like-4'])) {
   }
 }
 
-if (empty ($_POST['bio'])) {
-  print ('Расскажите о себе.<br/>');
+if (empty ($_POST['biog'])) {
+  print ('Заполните биографию.<br/>');
   $errors = TRUE;
 }
 
-if ($_POST['check']!="on") {
+if ($_POST['V']!="on") {
   print ('Подвердите согласие.<br/>');
   $errors = TRUE;
 }
@@ -96,30 +98,30 @@ if ($errors) {
   exit();
 }
 
-$stmt = $db->prepare("INSERT INTO Person (fio,tel, email, bornday, gender, bio, checked) VALUES (:fio, :tel, :email,:bornday,:gender,:bio,:checked)");
-$stmt->bindParam(':fio', $fio);
-$stmt->bindParam(':tel', $tel);
-$stmt->bindParam(':email', $email);
-$stmt->bindParam(':bornday', $bornday);
-$stmt->bindparam(':gender', $gender);
-$stmt->bindparam(':bio', $bio);
-$stmt->bindparam(':checked', $checked);
+$stmt = $db->prepare("INSERT INTO Person (fio, phone, mail, bornday, pol, biog, V) VALUES (:fio, :phone, :mail, :bornday, :pol, :biog, :V)"); //создание запроса
 $fio = $_POST['fio'];
-$tel = $_POST['tel'];
-$email = $_POST['email'];
+$phone = $_POST['phone'];
+$mail = $_POST['mail'];
 $bornday = $_POST['day'] . '.' . $_POST['month'] . '.' . $_POST['year'];
-$gender = $_POST['gender'];
-$bio = $_POST['bio'];
-$checked = true;
-$stmt->execute();
+$pol = $_POST['pol'];
+$biog = $_POST['biog'];
+$V = true;
+$stmt->bindParam(':fio', $fio);
+$stmt->bindParam(':phone', $phone);
+$stmt->bindParam(':mail', $mail);
+$stmt->bindParam(':bornday', $bornday);
+$stmt->bindparam(':pol', $pol);
+$stmt->bindparam(':biog', $biog);
+$stmt->bindparam(':V', $V);
+$stmt->execute(); //отправка
 $id = $db->lastInsertId();
 
-foreach ($_POST['like-4'] as $lang) {
+foreach ($_POST['lang'] as $lang) {
   $stmt = $db->prepare("INSERT INTO person_lang (id_u, id_l) VALUES (:id_u,:id_l)");
   $stmt->bindParam(':id_u', $id_u);
   $stmt->bindParam(':id_l', $lang);
   $id_u=$id;
-  $stmt->execute();
+  $stmt->execute(); //отправка
 }
 
 header('Location: ?save=1');
