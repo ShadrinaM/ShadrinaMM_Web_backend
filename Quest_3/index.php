@@ -68,20 +68,25 @@ if (empty($_POST['lang'])) {
   $sth = $db->prepare("SELECT id FROM Lang");
   $sth->execute();
   $langs = $sth->fetchAll();
-  foreach ($_POST['lang'] as $lang) {
-    $flag = TRue;
-    foreach ($langs as $index)
-      if ($index[0] == $lang) //т.к. index есть не то что можно сравнить с $lang
-      {
-        $flag = false;
-        break;
-      }
-    if ($flag == true) {
-      print ('Error: no valid language');
-      $errors = true;
-      break;
+  if (is_array($_POST['lang'])) {
+    foreach ($_POST['lang'] as $lang) {
+        $flag = true;
+        foreach ($langs as $index) {
+            if ($index[0] == $lang) {
+                $flag = false;
+                break;
+            }
+        }
+        if ($flag == true) {
+            print ('Error: no valid language');
+            $errors = true;
+            break;
+        }
     }
-  }
+} else {
+    print ('Error: language must be an array');
+    $errors = true;
+}
 }
 
 if (empty ($_POST['biog'])) {
