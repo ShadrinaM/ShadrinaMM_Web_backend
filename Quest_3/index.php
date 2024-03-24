@@ -99,6 +99,7 @@ if ($errors) {
 }
 
 $stmt = $db->prepare("INSERT INTO Person (fio, phone, mail, bornday, pol, biog, V) VALUES (:fio, :phone, :mail, :bornday, :pol, :biog, :V)"); //создание запроса
+$stmt->bindParam(':bornday', $bornday);
 $fio = $_POST['fio'];
 $phone = $_POST['phone'];
 $mail = $_POST['mail'];
@@ -109,7 +110,7 @@ $V = true;
 $stmt->bindParam(':fio', $fio);
 $stmt->bindParam(':phone', $phone);
 $stmt->bindParam(':mail', $mail);
-$stmt->bindParam(':bornday', $bornday);
+
 $stmt->bindparam(':pol', $pol);
 $stmt->bindparam(':biog', $biog);
 $stmt->bindparam(':V', $V);
@@ -117,7 +118,7 @@ $stmt->execute(); //отправка
 $id = $db->lastInsertId();
 
 foreach ($_POST['langg'] as $lang) {
-  $stmt = $db->prepare("INSERT INTO person_lang (id_u, id_l) VALUES (:id_u,:id_l)");
+  $stmt = $db->prepare("INSERT INTO person_and_lang (id_u, id_l) VALUES (:id_u,:id_l)");
   $stmt->bindParam(':id_u', $id_u);
   $stmt->bindParam(':id_l', $lang);
   $id_u = $id;
