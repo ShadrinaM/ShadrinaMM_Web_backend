@@ -84,9 +84,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['fio'] = empty($_COOKIE['fio_value']) ? '' : $_COOKIE['fio_value'];
   $values['phone'] = empty($_COOKIE['phone_value']) ? '' : $_COOKIE['phone_value'];
   $values['mail'] = empty($_COOKIE['mail_value']) ? '' : $_COOKIE['mail_value'];
-  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
-  $values['month'] = empty($_COOKIE['month_value']) ? '' : $_COOKIE['month_value'];
-  $values['day'] = empty($_COOKIE['day_value']) ? '' : $_COOKIE['day_value'];
+  $values['year'] = empty($_COOKIE['year_value']) ? array() : $_COOKIE['year_value'];
+  $values['month'] = empty($_COOKIE['month_value']) ? array() : $_COOKIE['month_value'];
+  $values['day'] = empty($_COOKIE['day_value']) ? array() : $_COOKIE['day_value'];
   $values['pol'] = empty($_COOKIE['pol_value']) ? '' : $_COOKIE['pol_value'];
   $values['langg'] = empty($_COOKIE['langg_value']) ? array() : unserialize($_COOKIE['langg_value']);
   $values['biog'] = empty($_COOKIE['biog_value']) ? '' : $_COOKIE['biog_value'];
