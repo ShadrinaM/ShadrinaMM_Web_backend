@@ -18,7 +18,8 @@ body {
   margin-bottom: 20px;
 }
 
-label, strong {
+label,
+strong {
   display: block;
   margin: 10px 0;
   color: #000080;
@@ -63,4 +64,8 @@ input[type="submit"]:hover {
 
 input[type="checkbox"] {
   margin-right: 5px;
+}
+
+.error {
+  border: 2px solid red;
 }
