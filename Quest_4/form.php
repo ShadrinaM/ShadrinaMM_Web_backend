@@ -71,8 +71,6 @@
         <?php
         for ($i = 1922; $i <= 2022; $i++) {
           echo "<option value=\"$i\" ";
-          if (in_array($i, $values['year']))
-          {print 'selected';}
           echo "$i год</option>";          
         } 
         ?>
