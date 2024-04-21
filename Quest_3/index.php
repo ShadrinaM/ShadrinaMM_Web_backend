@@ -7,7 +7,7 @@ header('Content-Type: text/html; charset=UTF-8');
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // В суперглобальном массиве $_GET PHP хранит все параметры, переданные в текущем запросе через URL.
-  if (!empty ($_GET['save'])) {
+  if (!empty($_GET['save'])) {
     // Если есть параметр save, то выводим сообщение пользователю.
     print ('Спасибо, результаты сохранены.');
   }
@@ -19,41 +19,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 $errors = FALSE;
-if (empty ($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
+if (empty($_POST['fio']) || !preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]{1,150}$/u', $_POST['fio'])) {
   print ('Заполните имя.<br/>');
   $errors = TRUE;
 }
-if (empty ($_POST['phone']) || !preg_match('/^\+[0-9]{11}$/', $_POST['phone'])) {
+if (empty($_POST['phone']) || !preg_match('/^\+[0-9]{11}$/', $_POST['phone'])) {
   print ('Заполните телефон.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['mail']) || !preg_match('/^([a-z0-9_-]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i', $_POST['mail'])) {
+if (empty($_POST['mail']) || !preg_match('/^([a-z0-9_-]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i', $_POST['mail'])) {
   print ('Заполните почту.<br/>');
   $errors = TRUE;
 }
-if (empty ($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
+if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
   print ('Заполните год.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['month']) || !is_numeric($_POST['year']) || $_POST['month'] < 0 || $_POST['month'] > 12) {
+if (empty($_POST['month']) || !is_numeric($_POST['year']) || $_POST['month'] < 0 || $_POST['month'] > 12) {
   print ('Заполните месяц.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['day']) || !is_numeric($_POST['year']) || $_POST['day'] < 0 || $_POST['day'] > 31) {
+if (empty($_POST['day']) || !is_numeric($_POST['year']) || $_POST['day'] < 0 || $_POST['day'] > 31) {
   print ('Заполните день.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['pol'])) {
-  print ('Выберите пол.<br/>');
+
+$polCheck = $_POST['pol'] == "1" || $_POST['pol'] == "2" || $_POST['pol'] == "3";
+if (empty($_POST['pol']) || !$polCheck) {
   $errors = TRUE;
 }
 
-include('../Secret.php');
 
+include ('../Secret.php');
 $user = userr;
 $pass = passs;
 $db = new PDO(
@@ -63,7 +64,7 @@ $db = new PDO(
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
-if (empty ($_POST['langg'])) {
+if (empty($_POST['langg'])) {
   print ('Выберите язык программирования.<br/>');
   $errors = TRUE;
 } else {
@@ -86,12 +87,12 @@ if (empty ($_POST['langg'])) {
 }
 
 
-if (empty ($_POST['biog'])) {
+if (empty($_POST['biog'])) {
   print ('Заполните биографию.<br/>');
   $errors = TRUE;
 }
 
-if (empty ($_POST['V'])) {
+if (empty($_POST['V'])) {
   print ('Подтвердите согласие.<br/>');
   $errors = TRUE;
 }
