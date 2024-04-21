@@ -104,7 +104,7 @@
         <?php
         for ($i = 1; $i <= 31; $i++) {
           echo "<option value='$i'";
-          if ($i == $values['month']) {
+          if ($i == $values['day']) {
               echo " selected";
           }
           echo ">$i день</option>";
