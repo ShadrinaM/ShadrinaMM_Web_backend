@@ -71,11 +71,15 @@
         <?php
         for ($i = 1922; $i <= 2022; $i++) {
           echo "<option value='$i'";
-          echo "$i год</option>";          
-        } 
+          if ($i == $values['year']) {
+              echo " selected";
+          }
+          echo ">$i год</option>";
+        }
         ?>
       </select>
       <br/>
+
 
     
       <strong>
