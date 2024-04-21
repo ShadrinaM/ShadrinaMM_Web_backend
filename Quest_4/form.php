@@ -87,10 +87,11 @@
       <select name="month"  <?php if ($errors['month']) {print 'class="error"';} ?>   >
         <?php
         for ($i = 1; $i <= 12; $i++) {
-          echo "<option value=\"$i\" ";
-          if (in_array($i, $values['month']))
-          {print 'selected';}
-          echo ">$i месяц</option>";     
+          echo "<option value='$i'";
+          if ($i == $values['month']) {
+              echo " selected";
+          }
+          echo ">$i месяц</option>";
         }
         ?>
       </select>
@@ -102,10 +103,11 @@
       <select name="day"  <?php if ($errors['day']) {print 'class="error"';} ?>>
         <?php
         for ($i = 1; $i <= 31; $i++) {
-          echo "<option value=\"$i\" ";
-          if (in_array($i, $values['month']))
-          {print 'selected';}
-          echo "$i день</option>";
+          echo "<option value='$i'";
+          if ($i == $values['month']) {
+              echo " selected";
+          }
+          echo ">$i день</option>";
         }
         ?>
       </select>
