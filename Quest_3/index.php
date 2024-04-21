@@ -52,10 +52,12 @@ if (empty ($_POST['pol'])) {
   $errors = TRUE;
 }
 
-$user = 'u67304';
-$pass = '4684538';
+include('../Secret.php');
+
+$user = userr;
+$pass = passs;
 $db = new PDO(
-  'mysql:host=localhost;dbname=u67304',
+  "mysql:host=localhost;dbname=$user",
   $user,
   $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
