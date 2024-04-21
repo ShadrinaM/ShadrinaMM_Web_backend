@@ -158,10 +158,7 @@
         <strong>
           Биография:
         </strong>
-        <textarea name="biog" 
-          <?php if ($errors['biog']) {print 'class="error"';} ?>
-            placeholder="Я ждал 12 лет в Азкабане..">
-          <?php print $values['biog']; ?>
+        <textarea name="biog" <?php if ($errors['biog']) {print 'class="error"';} ?> placeholder="Я ждал 12 лет в Азкабане.."><?php print $values['biog']; ?>
         </textarea>
       </label>
 
