@@ -160,15 +160,15 @@
         </strong>
         <textarea name="biog" 
           <?php if ($errors['biog']) {print 'class="error"';} ?>
-          value="<?php print $values['biog']; ?>" 
-          placeholder="Я ждал 12 лет в Азкабане..">
+            placeholder="Я ждал 12 лет в Азкабане..">
+          <?php print $values['biog']; ?>
         </textarea>
       </label>
 
       <label>
         <input type="checkbox" name="V"
           <?php if ($errors['V']) {print 'class="error"';} ?>
-          value="<?php print $values['V']; ?>"
+          <?php if (!empty($values['V'])) {print "checked";}; ?>
           />
         c контрактом ознакомлен(а)
       </label>
