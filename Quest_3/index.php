@@ -92,7 +92,7 @@ if (empty ($_POST['biog'])) {
 }
 
 if (empty ($_POST['V'])) {
-  print ('Подвердите согласие.<br/>');
+  print ('Подтвердите согласие.<br/>');
   $errors = TRUE;
 }
 
