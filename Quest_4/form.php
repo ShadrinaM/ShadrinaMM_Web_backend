@@ -70,7 +70,7 @@
       <select name="year"  <?php if ($errors['year']) {print 'class="error"';} ?> >
         <?php
         for ($i = 1922; $i <= 2022; $i++) {
-          echo "<option value=\"$i\" ";
+          echo "<option value=$i";
           echo "$i год</option>";          
         } 
         ?>
