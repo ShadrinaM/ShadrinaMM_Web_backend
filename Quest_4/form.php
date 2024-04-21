@@ -66,7 +66,6 @@
       <strong>
         Укажите год рождения:
       </strong>
-      <?php echo $values['year'] . "<br>" ?>
       <select name="year"  <?php if ($errors['year']) {print 'class="error"';} ?> >
         <?php
         for ($i = 1922; $i <= 2022; $i++) {
@@ -91,7 +90,7 @@
           echo "<option value=\"$i\" ";
           if (in_array($i, $values['month']))
           {print 'selected';}
-          echo "$i месяц</option>";     
+          echo ">$i месяц</option>";     
         }
         ?>
       </select>
