@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             Пароль:
         </strong>
         <input name="pass" />
+        <br>
         <input type="submit" value="Войти" />
     </form>
     <style>
