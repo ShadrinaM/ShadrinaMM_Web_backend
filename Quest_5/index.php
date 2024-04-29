@@ -276,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $deleteLangs = "DELETE FROM person_and_lang WHERE id = '$formID'";
       $delReq = $db->query($deleteLangs);
       // заполняем заново языки
-      $lang = "SELECT id_l FROM Lang WHERE id_l = ?";
+      $lang = "SELECT id FROM Lang WHERE id = ?";
       $feed = "INSERT INTO person_and_lang (id_u, id_l) VALUES (?, ?)";
       $langPrep = $db->prepare($lang);
       $feedPrep = $db->prepare($feed);
@@ -308,8 +308,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $formReq->execute([$login, $_POST['fio'], $_POST['phone'], $_POST['mail'], $_POST['birthdate'], $_POST['pol'], $_POST['biog']]);
       $userID = $db->lastInsertId();
       //и заполняет языки
-      $lang = "SELECT id_l FROM Lang WHERE id_l = ?";
-      $feed = "INSERT INTO person_and_lang (id_u, id_lang) VALUES (?, ?)";
+      $lang = "SELECT id FROM Lang WHERE id = ?";
+      $feed = "INSERT INTO person_and_lang (id_u, id_l) VALUES (?, ?)";
       $langPrep = $db->prepare($lang);
       $feedPrep = $db->prepare($feed);
       foreach ($_POST['selections'] as $selection) {
