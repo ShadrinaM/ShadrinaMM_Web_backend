@@ -9,13 +9,13 @@ CREATE TABLE Person(
   V boolean NOT NULL DEFAULT FALSE,
   PRIMARY KEY(id)
 );
-progleng
+
 CREATE TABLE Lang(
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   language varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY(id)
 );
-LangsInForm
+
 CREATE TABLE person_and_lang(
 id int(10) unsigned NOT NULL AUTO_INCREMENT,
 id_u int(10) unsigned Not NUll DEFAULT 0,
@@ -23,12 +23,12 @@ id_l int(10) unsigned Not NUll DEFAULT 0,
 PRIMARY KEY(id)
 );
 
-logins
+
 CREATE TABLE Logi (
   login VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY,
   password VARCHAR(255) NOT NULL
 );
-forms
+
 CREATE TABLE LogPerson(
   login VARCHAR(255) NOT NULL references Logi(login),
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
