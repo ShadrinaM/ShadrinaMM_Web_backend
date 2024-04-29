@@ -299,7 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $_SESSION['hasLogged'] = false;
 
     try {
-      $newUser = "INSERT INTO Log (login, password) VALUES (?, ?)";
+      $newUser = "INSERT INTO Logi (login, password) VALUES (?, ?)";
       $request = $db->prepare($newUser);
       $request->execute([$login, md5($pass)]); // сохранил логин и хеш пароля
       //добавляем данные формы нового пользователя  в бд
