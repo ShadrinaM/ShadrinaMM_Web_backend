@@ -24,20 +24,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <form action="" method="post">
         <h3 id="forma">
             ВХОД В АККАУНТ
-        <h3>
-        <strong>
-            Логин:
-        </strong>
-        <input name="login" />
-        <br>
-        <strong>
-            Пароль:
-        </strong>
-        <input name="pass" />
-        <br>
-        <input type="submit" value="Войти" />
+            <h3>
+                <strong>
+                    Логин:
+                </strong>
+                <input name="login" />
+                <br>
+                <strong>
+                    Пароль:
+                </strong>
+                <input name="pass" />
+                <br>
+                <input type="submit" value="Войти" />
     </form>
     <style>
+        .fomaa {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #b0e0e6;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
         form {
             width: 50%;
             margin: 0 auto;
