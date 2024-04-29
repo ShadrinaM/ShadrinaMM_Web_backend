@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['birthdate'] = $row['birthdate'];
       $values['pol'] = $row['pol'];
       $values['biog'] = $row['biog'];
-      $select = "SELECT id_l FROM person_and_lang WHERE id = ?";
+      $select = "SELECT id_l FROM person_and_lang WHERE id_u = ?";
       $result = $db->prepare($select);
       $result->execute([$formID]);
       $list = array();
