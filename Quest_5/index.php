@@ -127,12 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['birthdate'] = $row['birthdate'];
       $values['pol'] = $row['pol'];
       $values['biog'] = $row['biog'];
-      $select = "SELECT id_lang FROM LangsInForm WHERE id = ?";
+      $select = "SELECT id_l FROM person_and_lang WHERE id = ?";
       $result = $db->prepare($select);
       $result->execute([$formID]);
       $list = array();
       while ($row = $result->fetch()) {
-        $list[] = $row['id_lang'];
+        $list[] = $row['id_l'];
       }
       $values['langg'] = $list;
     } catch (PDOException $e) {
@@ -264,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     try {
       // получаем форму для данного логина
       $login = $_SESSION['login'];
-      $select = "SELECT f.id FROM LogPerson f, Log l WHERE l.login = '$login' AND f.login = l.login";
+      $select = "SELECT f.id FROM LogPerson f, Logi l WHERE l.login = '$login' AND f.login = l.login";
       $result = $db->query($select);
       $row = $result->fetch();
       $formID = $row['id'];
@@ -276,8 +276,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $deleteLangs = "DELETE FROM LangsInForm WHERE id = '$formID'";
       $delReq = $db->query($deleteLangs);
       // заполняем заново языки
-      $lang = "SELECT id_lang FROM ProgLangs WHERE id_lang = ?";
-      $feed = "INSERT INTO LangsInForm (id, id_lang) VALUES (?, ?)";
+      $lang = "SELECT id_l FROM Lang WHERE id_l = ?";
+      $feed = "INSERT INTO person_and_lang (id_u, id_l) VALUES (?, ?)";
       $langPrep = $db->prepare($lang);
       $feedPrep = $db->prepare($feed);
       foreach ($_POST['langg'] as $selection) {
@@ -303,13 +303,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $request = $db->prepare($newUser);
       $request->execute([$login, md5($pass)]); // сохранил логин и хеш пароля
       //добавляем данные формы нового пользователя  в бд
-      $newForm = "INSERT INTO Forms (login, fio, phone, email, birthdate, gender, biography) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      $newForm = "INSERT INTO LogPerson (login, fio, phone, mail, birthdate, pol, biog) VALUES (?, ?, ?, ?, ?, ?, ?)";
       $formReq = $db->prepare($newForm);
-      $formReq->execute([$login, $_POST['fio'], $_POST['phone'], $_POST['email'], $_POST['birthdate'], $_POST['gender'], $_POST['biography']]);
+      $formReq->execute([$login, $_POST['fio'], $_POST['phone'], $_POST['mail'], $_POST['birthdate'], $_POST['pol'], $_POST['biog']]);
       $userID = $db->lastInsertId();
       //и заполняет языки
-      $lang = "SELECT id_lang FROM ProgLangs WHERE id_lang = ?";
-      $feed = "INSERT INTO LangsInForm (id, id_lang) VALUES (?, ?)";
+      $lang = "SELECT id_l FROM Lang WHERE id_l = ?";
+      $feed = "INSERT INTO person_and_lang (id_u, id_lang) VALUES (?, ?)";
       $langPrep = $db->prepare($lang);
       $feedPrep = $db->prepare($feed);
       foreach ($_POST['selections'] as $selection) {
