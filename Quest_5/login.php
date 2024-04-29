@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ?>
 
     <form action="" method="post">
+        <h3 id="forma">
+            ВХОД В АККАУНТ
+        <h3>
         <strong>
             Логин:
         </strong>
