@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $formReq = $db->prepare($updateForm);
       $formReq->execute([$_POST['fio'], $_POST['phone'], $_POST['mail'], $_POST['birthdate'], $_POST['pol'], $_POST['biog']]);
       // удаляем прошлые языки
-      $deleteLangs = "DELETE FROM LangsInForm WHERE id = '$formID'";
+      $deleteLangs = "DELETE FROM person_and_lang WHERE id = '$formID'";
       $delReq = $db->query($deleteLangs);
       // заполняем заново языки
       $lang = "SELECT id_l FROM Lang WHERE id_l = ?";
