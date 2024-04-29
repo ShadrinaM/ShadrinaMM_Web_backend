@@ -22,7 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ?>
 
     <form action="" method="post">
+        <strong>
+            Логин:
+        </strong>
         <input name="login" />
+        <br>
+        <strong>
+            Пароль:
+        </strong>
         <input name="pass" />
         <input type="submit" value="Войти" />
     </form>
@@ -35,6 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            color: #000080;
+        }
+
+        strong {
+            display: block;
+            margin: 10px 0;
             color: #000080;
         }
 
@@ -62,10 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         input[type="submit"]:hover {
             background-color: #0000cd;
-        }
-
-        .error {
-            border: 2px solid red;
         }
     </style>
     <?php
