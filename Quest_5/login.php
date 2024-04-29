@@ -43,7 +43,7 @@ else {
     // проверка наличия логина в базе данных
     $loginFlag = false;
     try {
-        $select = "SELECT * FROM Logins";
+        $select = "SELECT * FROM Logi";
         $result = $db->query($select);
         if (!$session_started) {
             session_start();
