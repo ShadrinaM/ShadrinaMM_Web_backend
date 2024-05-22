@@ -23,7 +23,7 @@
 
   <div class="fomaa">
     <form action="index.php" method="POST">
-
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
       <h3 id="forma">
         ФОРМА ДЛЯ ПОДПИСКИ НА РАССЫЛКУ С ЦИТАТИМИ ПРЕПОДАВАТЕЛЕЙ ФКТИПМ
       </h3>

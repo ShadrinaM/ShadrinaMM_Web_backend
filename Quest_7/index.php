@@ -150,6 +150,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('CSRF attack detected');
+  }
+
   include ('../Secret.php');
   $user = userr;
   $pass = passs;
@@ -419,6 +423,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
   $isStarted = session_start();
+  if ($isStarted) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+  }
   if ($isStarted && !empty($_COOKIE[session_name()]) && !empty($_SESSION['hasLogged'])) {
     // перезапись данных в бд
     try {
