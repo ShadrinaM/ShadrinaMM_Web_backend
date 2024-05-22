@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form7</title>
+  <title>Form5</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,7 +23,7 @@
 
   <div class="fomaa">
     <form action="index.php" method="POST">
-      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
       <h3 id="forma">
         ФОРМА ДЛЯ ПОДПИСКИ НА РАССЫЛКУ С ЦИТАТИМИ ПРЕПОДАВАТЕЛЕЙ ФКТИПМ
       </h3>
@@ -91,7 +91,7 @@
       <br>
 
       <strong>
-        Любимый язык программирования:
+          Любимый язык программирования:
       </strong>
       <div class="language">
           <label>
